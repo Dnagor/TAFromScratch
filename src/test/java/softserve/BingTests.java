@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import softserve.pages.ChatPage;
 import softserve.pages.MainPage;
+import softserve.pages.SettingsPage;
 import softserve.pages.WeatherSearchResultsPage;
 import softserve.utils.DriverManager;
 
@@ -26,14 +27,19 @@ public class BingTests {
     }
     @Test
     public void test1(){
-        mainPage.search("weather in Lviv");
-        var weatherSearchResultsPage = new WeatherSearchResultsPage(webDriver);
+        var weatherSearchResultsPage = mainPage.weahtherSearchByCity("weather in Lviv");
         assertTrue(weatherSearchResultsPage.isWeatherResultsPageLoaded("Lviv, Ukraine"));
     }
     @Test
     public void test2(){
-        mainPage.clickChatButton();
-        var chatPage = new ChatPage(webDriver);
+        var chatPage = mainPage.clickChatButton();
         assertTrue(chatPage.isChatPageLoaded());
+    }
+    @Test
+    public void test3(){
+        var settingsPage = mainPage.clickSettingsAndQuickLinksButton()
+                .clickSettingsLink()
+                .clickMoreSettingsLink();
+        assertTrue(settingsPage.isSettingsPageLoaded());
     }
 }

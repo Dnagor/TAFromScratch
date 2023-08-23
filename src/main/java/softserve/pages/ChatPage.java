@@ -5,12 +5,17 @@ import org.openqa.selenium.WebDriver;
 
 public class ChatPage {
     private final WebDriver driver;
-    private final By chatPageHeader = By.xpath("//h2[contains(text(),'Welcome to the new Bing')]");
+    private final By mainShadowRoot = By.cssSelector("div .cib-serp-main");
+    private final By actionBarShadowRoot = By.cssSelector("#cib-action-bar-main");
+    private final By textInputShadowRoot = By.cssSelector("cib-text-input");
+    private final By searchTextArea = By.cssSelector("[placeholder='Ask me anything...']");
     public ChatPage(WebDriver driver){
         this.driver = driver;
     }
     public boolean isChatPageLoaded(){
-        //continue
-        return driver.findElement(chatPageHeader).isDisplayed();
+        return driver.findElement(mainShadowRoot).getShadowRoot()
+                .findElement(actionBarShadowRoot).getShadowRoot()
+                .findElement(textInputShadowRoot).getShadowRoot()
+                .findElement(searchTextArea).isDisplayed();
     }
 }
