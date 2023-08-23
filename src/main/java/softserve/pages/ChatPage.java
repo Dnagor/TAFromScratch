@@ -10,7 +10,7 @@ public class ChatPage {
         this.driver = driver;
     }
     public boolean isChatPageLoaded(){
-        //TODO shadow DOM?
+        //continue
         return driver.findElement(chatPageHeader).isDisplayed();
     }
 }
