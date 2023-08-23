@@ -11,6 +11,7 @@ public class MainPage {
     private final By searchInput = By.id("sb_form_q");
     private final By settingsAndQuickLinksButton = By.id("id_sc");
     private final By settingsLink = By.id("hbsettings");
+
     private final By moreSettingsLink = By.xpath("//a/div/div[contains(text(),'More')]");
     private final By chatButton = By.xpath("//a/div[contains(text(),'Chat')]");
 
