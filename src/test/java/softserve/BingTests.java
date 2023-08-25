@@ -12,31 +12,34 @@ import static org.testng.AssertJUnit.assertTrue;
 public class BingTests {
     public WebDriver webDriver;
     public MainPage mainPage;
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         DriverManager.closeDriver();
     }
+
     @BeforeMethod
-    public void driverSetup(){
+    public void driverSetup() {
         webDriver = DriverManager.getWebDriver();
         webDriver.get("https://www.bing.com/");
         mainPage = new MainPage(webDriver);
     }
+
     @Test
-    public void test1(){
+    public void test1() {
         var weatherSearchResultsPage = mainPage.waitForPageToLoad().weahtherSearchByCity("weather in Lviv");
         assertTrue(weatherSearchResultsPage.isWeatherResultsPageLoaded("Lviv, Ukraine"));
     }
+
     @Test
-    public void test2(){
+    public void test2() {
         var chatPage = mainPage.waitForPageToLoad().clickChatButton();
         assertTrue(chatPage.isChatPageLoaded());
     }
+
     @Test
-    public void test3(){
-        var settingsPage = mainPage.waitForPageToLoad().clickSettingsAndQuickLinksButton()
-                .clickSettingsLink()
-                .clickMoreSettingsLink();
+    public void test3() {
+        var settingsPage = mainPage.waitForPageToLoad().clickSettingsAndQuickLinksButton().clickSettingsLink().clickMoreSettingsLink();
         assertTrue(settingsPage.isSettingsPageLoaded());
     }
 }
